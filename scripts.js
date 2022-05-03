@@ -45,6 +45,7 @@ numberBtn.forEach((btn) =>
       //setting the number to the display and reads the number until you select an operation
       number.innerText += btn.innerText;
 
+      // sees if there is an operation present to fulfill the sub or div logic
       if (operation) {
         subOrDiv += btn.innerText;
       }

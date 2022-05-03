@@ -4,8 +4,10 @@ number.innerText = 0;
 
 //set an empty variable to store the number we desire
 let prevNum = 0;
+
 // set a variable to track the operation
 let operation = null;
+
 //set a function to do the math
 const doTheMath = (prevNum, operation, currentNum) => {
   console.log(prevNum, operation, currentNum);
@@ -42,11 +44,11 @@ numberBtn.forEach((btn) =>
     } else if (
       !+btn.innerText &&
       btn.innerText !== "=" &&
-      btn.innerText !== "."
+      btn.innerText !== "." &&
+      btn.innerText !== "clear"
     ) {
       //sets the previous number
       prevNum = +number.innerText;
-      console.log(prevNum);
       // sets the operation to be used
       if (btn.innerText === "0") {
         return;
@@ -69,6 +71,11 @@ numberBtn.forEach((btn) =>
         // add the decimal one time
         number.innerText += ".";
       }
+      // if the btn the clear button clean away all memory from the variables
+    } else if (btn.innerText === "clear") {
+      number.innerText = "0";
+      prevNum = 0;
+      operation = null;
     }
   })
 );

@@ -16,6 +16,8 @@ const doTheMath = (prevNum, operation, currentNum) => {
     return prevNum + currentNum;
   } else if (operation === "-") {
     return prevNum - currentNum;
+  } else if (!operation) {
+    return currentNum;
   }
 };
 
@@ -34,7 +36,11 @@ numberBtn.forEach((btn) =>
       //setting the number to the display and reads the number until you select an operation
       number.innerText += btn.innerText;
       //if the button contains an operation then set the operation and the prevNum to track the calculation
-    } else if (!+btn.innerText && btn.innerText !== "=") {
+    } else if (
+      !+btn.innerText &&
+      btn.innerText !== "=" &&
+      btn.innerText !== "."
+    ) {
       //sets the previous number
       prevNum = number.innerText;
       // sets the operation to be used
@@ -45,6 +51,16 @@ numberBtn.forEach((btn) =>
     } else if (btn.innerText === "=") {
       //send all the variables through our function
       number.innerText = doTheMath(+prevNum, operation, +number.innerText);
+      //check to see if the button hit is a .
+    } else if (btn.innerText === ".") {
+      // check to see if it already contains a decimal
+      if (number.innerText.split("").includes(".")) {
+        // if it does we are going to stop the function and just not do anything
+        return;
+      } else {
+        // add the decimal one time
+        number.innerText += ".";
+      }
     }
   })
 );

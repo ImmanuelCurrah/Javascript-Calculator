@@ -13,8 +13,6 @@ let operation = null;
 
 //set a function to do the math
 const doTheMath = (prevNum, operation, currentNum) => {
-  console.log(subOrDiv);
-  console.log(prevNum, operation, currentNum);
   if (operation === "x") {
     return prevNum * currentNum;
   } else if (operation === "/") {

@@ -8,6 +8,7 @@ let prevNum = 0;
 let operation = null;
 //set a function to do the math
 const doTheMath = (prevNum, operation, currentNum) => {
+  console.log(prevNum, operation, currentNum);
   if (operation === "x") {
     return prevNum * currentNum;
   } else if (operation === "/") {
@@ -28,10 +29,12 @@ numberBtn.forEach((btn) =>
   //adding an event listener to make them buttons
   btn.addEventListener("click", () => {
     //checking to see if it is a number or not
-    if (+btn.innerText) {
+    if (+btn.innerText || btn.innerText === "0") {
       //checking if this is the first time you are entering a number
       if (number.innerText === "0") {
         number.innerText = null;
+      } else if (number.innerText === "0" && btn.innerText === "0") {
+        number.innerText = 0;
       }
       //setting the number to the display and reads the number until you select an operation
       number.innerText += btn.innerText;
@@ -42,9 +45,14 @@ numberBtn.forEach((btn) =>
       btn.innerText !== "."
     ) {
       //sets the previous number
-      prevNum = number.innerText;
+      prevNum = +number.innerText;
+      console.log(prevNum);
       // sets the operation to be used
-      operation = btn.innerText;
+      if (btn.innerText === "0") {
+        return;
+      } else {
+        operation = btn.innerText;
+      }
       //sets the display back to null so you can enter a new number
       number.innerText = 0;
       //if the button is an equal sign execute the logic to calculate the operation

@@ -1,6 +1,6 @@
 // set the starting number to 0
 let number = document.getElementById("number");
-number.innerText = null;
+number.innerText = 0;
 
 //set an empty variable to store the number we desire
 let prevNum = 0;
@@ -21,17 +21,29 @@ const doTheMath = (prevNum, operation, currentNum) => {
 
 // selecting the numbers as buttons
 let numberBtn = document.querySelectorAll(".button");
+//mapping through the buttons and telling each one what to do
 numberBtn.forEach((btn) =>
+  //adding an event listener to make them buttons
   btn.addEventListener("click", () => {
+    //checking to see if it is a number or not
     if (+btn.innerText) {
+      //checking if this is the first time you are entering a number
+      if (number.innerText === "0") {
+        number.innerText = null;
+      }
+      //setting the number to the display and reads the number until you select an operation
       number.innerText += btn.innerText;
+      //if the button contains an operation then set the operation and the prevNum to track the calculation
     } else if (!+btn.innerText && btn.innerText !== "=") {
+      //sets the previous number
       prevNum = number.innerText;
+      // sets the operation to be used
       operation = btn.innerText;
-      console.log(operation);
-      number.innerText = null;
-      console.log(prevNum);
+      //sets the display back to null so you can enter a new number
+      number.innerText = 0;
+      //if the button is an equal sign execute the logic to calculate the operation
     } else if (btn.innerText === "=") {
+      //send all the variables through our function
       number.innerText = doTheMath(+prevNum, operation, +number.innerText);
     }
   })

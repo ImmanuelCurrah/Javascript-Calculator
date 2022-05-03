@@ -75,7 +75,6 @@ numberBtn.forEach((btn) =>
       } else {
         number.innerText = doTheMath(+prevNum, operation, +number.innerText);
       }
-
       //check to see if the button hit is a .
     } else if (btn.innerText === ".") {
       // check to see if it already contains a decimal

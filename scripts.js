@@ -46,7 +46,7 @@ numberBtn.forEach((btn) =>
       number.innerText += btn.innerText;
 
       if (operation) {
-        subOrDiv = btn.innerText;
+        subOrDiv += btn.innerText;
       }
       //if the button contains an operation then set the operation and the prevNum to track the calculation
     } else if (

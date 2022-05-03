@@ -5,11 +5,15 @@ number.innerText = 0;
 //set an empty variable to store the number we desire
 let prevNum = 0;
 
+//set variable for incrementing subtraction and division
+let subOrDiv = 0;
+
 // set a variable to track the operation
 let operation = null;
 
 //set a function to do the math
 const doTheMath = (prevNum, operation, currentNum) => {
+  console.log(subOrDiv);
   console.log(prevNum, operation, currentNum);
   if (operation === "x") {
     return prevNum * currentNum;
@@ -40,6 +44,10 @@ numberBtn.forEach((btn) =>
       }
       //setting the number to the display and reads the number until you select an operation
       number.innerText += btn.innerText;
+
+      if (operation) {
+        subOrDiv = btn.innerText;
+      }
       //if the button contains an operation then set the operation and the prevNum to track the calculation
     } else if (
       !+btn.innerText &&
@@ -60,7 +68,13 @@ numberBtn.forEach((btn) =>
       //if the button is an equal sign execute the logic to calculate the operation
     } else if (btn.innerText === "=") {
       //send all the variables through our function
-      number.innerText = doTheMath(+prevNum, operation, +number.innerText);
+      if (operation === "-" || operation === "/") {
+        number.innerText = doTheMath(+prevNum, operation, +subOrDiv);
+        prevNum = number.innerText;
+      } else {
+        number.innerText = doTheMath(+prevNum, operation, +number.innerText);
+      }
+
       //check to see if the button hit is a .
     } else if (btn.innerText === ".") {
       // check to see if it already contains a decimal

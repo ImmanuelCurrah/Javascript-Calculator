@@ -64,6 +64,8 @@ numberBtn.forEach((btn) =>
       }
       //sets the display back to null so you can enter a new number
       number.innerText = 0;
+      //set the dividend or subtractant to 0
+      subOrDiv = 0;
       //if the button is an equal sign execute the logic to calculate the operation
     } else if (btn.innerText === "=") {
       //send all the variables through our function
